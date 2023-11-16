@@ -18,7 +18,7 @@ jobs:
       - name: ValiderTerraform
         run: terraform validate
       - name: TerraformPlan
-        run: terraform plan --kubeconfig ../TP-terraform/.kube/config
+        run: terraform plan -kubeconfig="../TP-terraform/.kube/config"
       - name: Approuver
         id: approuver
         run: echo "Appuyer pour approuver"
