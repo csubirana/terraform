@@ -31,6 +31,7 @@ jobs:
       - name: DeployerTerraform
         working-directory: ./TP-terraform
       - name: Valider
+        uses: trstringer/manual-approval@v1
         with:
           secret: ${{secrets.TOKEN_VALIDATION}}
           approvers: csubirana
