@@ -4,42 +4,33 @@ name: CI
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    push:
+      branches: [ "main" ]
+    pull_request:
+      branches: [ "main" ]
 
   # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-  jobs:
-      - name: InitierEtValiderTerraform
-        steps:
-          - name: Checkout
-            uses: actions/checkout@v2
-
-          - name: InitierTerraform
-            run: terraform init
-
-          - name: ValiderTerraform
-            run: terraform validate
-
-  jobs:
-      - name: PlanDeTerraform
-        steps:
-          - name: Checkout
-            uses: actions/checkout@v2
-
-          - name: TerraformPlan
-            run: terraform plan 
-
-  jobs:
-        name: ValidationManuelle
-        steps:
-        - name: Approuver
-          id: approuver
-          run: echo "Appuyer pour approuver"
-
-        - name: DeployerTerraform
-          if: github.event_name == 'workflow_run' && github.event.workflow_run.event == 'APPROVED'
-          run: terraform apply 
+    workflow_dispatch:
+    
+jobs:
+  - name: InitierEtValiderTerraform
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+  
+      - name: InitierTerraform
+        run: terraform init
+  
+      - name: ValiderTerraform
+        run: terraform validate
+                
+      - name: TerraformPlan
+        run: terraform plan 
+              
+      - name: Approuver
+        id: approuver
+        run: echo "Appuyer pour approuver"
+  
+      - name: DeployerTerraform
+        if: github.event_name == 'workflow_run' && github.event.workflow_run.event == 'APPROVED'
+        run: terraform apply 
