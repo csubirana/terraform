@@ -31,6 +31,6 @@ jobs:
       - name: DeployerTerraform
         working-directory: ./TP-terraform
         if: >-
-           github.event_name == 'workflow_run' &&
-           github.event.workflow_run.event == 'APPROVED'
+           approvers: csubirana
+           minimum-approvals: 1
         run: terraform apply
