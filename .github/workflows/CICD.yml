@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: ConnexionAzure
         working-directory: ./TP-terraform
-        run: az login -u ${{secret.AZURE_USER}} -p ${{secret.AZURE_PASSWD}}
+        run: az login -u ${{secrets.AZURE_USER}} -p ${{secrets.AZURE_PASSWD}}
       - name: Checkout
         uses: actions/checkout@v2
       - name: InitierTerraform
