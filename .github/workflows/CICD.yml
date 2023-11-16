@@ -30,7 +30,9 @@ jobs:
         run: echo "Appuyer pour approuver"
       - name: DeployerTerraform
         working-directory: ./TP-terraform
-        if: >-
-           approvers: csubirana
-           minimum-approvals: 1
-        run: terraform apply
+      - name: Valider
+        with:
+          secret: ${{secrets.TOKEN_VALIDATION}}
+          approvers: csubirana
+          minimum-approvals: 1
+          run: terraform apply
