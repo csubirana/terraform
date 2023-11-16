@@ -28,8 +28,6 @@ jobs:
       - name: Approuver
         id: approuver
         run: echo "Appuyer pour approuver"
-      - name: DeployerTerraform
-        working-directory: ./TP-terraform
       - name: Valider
         uses: trstringer/manual-approval@v1
         with:
