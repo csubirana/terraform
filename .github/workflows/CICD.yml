@@ -18,7 +18,7 @@ jobs:
       - name: ValiderTerraform
         run: terraform validate
       - name: TerraformPlan
-        run: terraform plan -out=tfplan
+        run: terraform plan -var-file=../TP-terraform/
       - name: Approuver
         id: approuver
         run: echo "Appuyer pour approuver"
