@@ -14,15 +14,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: InitierTerraform
+        working-directory: ./TP-terraform
         run: terraform init
       - name: ValiderTerraform
+        working-directory: ./TP-terraform
         run: terraform validate
       - name: TerraformPlan
-        run: terraform plan -kubeconfig="../TP-terraform/.kube/config"
+        working-directory: ./TP-terraform
+        run: terraform plan
       - name: Approuver
         id: approuver
         run: echo "Appuyer pour approuver"
       - name: DeployerTerraform
+        working-directory: ./TP-terraform
         if: >-
            github.event_name == 'workflow_run' &&
            github.event.workflow_run.event == 'APPROVED'
