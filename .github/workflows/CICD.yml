@@ -11,11 +11,11 @@ jobs:
     name: terraform
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
       - name: ConnexionAzure
         working-directory: ./TP-terraform
         run: az login -u ${{secrets.AZURE_USER}} -p ${{secrets.AZURE_PASSWD}}
-      - name: Checkout
-        uses: actions/checkout@v2
       - name: InitierTerraform
         working-directory: ./TP-terraform
         run: terraform init
